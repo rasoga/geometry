@@ -1,0 +1,24 @@
+<svg version="1.1" baseProfile="full"
+ width="700" height="700"
+ viewbox="-101 -101 202 202"
+ xmlns="http://www.w3.org/2000/svg">
+ 
+ <defs>
+    <clipPath id="cut-off">
+      <circle x="0" y="0" r="100" />
+    </clipPath>
+  </defs>
+  
+  <g clip-path="url(#cut-off)">
+    <% @tri.list.each do |t| %>
+      <% t.edges.each do |e| %>
+        <% if e.c %>
+          <circle cx="<%= e.p[0] %>" cy="<%= e.p[1] %>" r="<%= e.q %>" stroke="black" stroke-width="0.5" fill=none />
+        <% else %>
+          <line x1="<%= e.p[0] %>" y1="<%= e.p[1] %>" x2="<%= e.q[0] %>" y2="<%= e.q[1] %>" style="stroke:black;stroke-width:0.5" />
+        <% end %>
+      <% end %>
+    <% end %>
+  </g>
+  <circle cx="0" cy="0" r="100" stroke="red" stroke-width="1" fill=none />
+</svg>

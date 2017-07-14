@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="small-12 medium-3 column triangulationMenu">
+    <div class="row">
+      <div class="small-12 column">
+        <form method="POST" action="/triangulation">
+          <div class="row">
+            <div class="small-12 column">
+              <label>Angles -> pi / values</label>
+              <input type="number" name="w1" min="1" value="<%= @winkel[0] %>">
+              <input type="number" name="w2" min="1" value="<%= @winkel[1] %>">
+              <input type="number" name="w3" min="1" value="<%= @winkel[2] %>">
+            </div>
+          </div>
+            
+          <button type="submit" class="expanded button">GO!</button>
+          
+          <div class="row">
+            <div class="small-12 column">
+              <label>Itterations</label>
+              <input type="number" name="itt" min="1" value="<%= @itteration %>">
+            </div>
+          </div>
+          
+          <div style="border:2px black solid; text-align:center;">Euclidian case only</div>
+          
+          <div class="row eucl_extra">
+            <div class="small-12 column">
+              <label>Coloring</label>
+            </div>
+            <div class="small-12 column">
+              <div class="row">
+                 <input type="radio" name="col" value="bwrainbow" id="poll_bwrainbow">
+                 <label for="poll_bwrainbow" class="text-right">BW-Rose(Rainbow)</label>
+              </div>
+              <div class="row">
+                 <input type="radio" name="col" value="rand" id="poll_rand">
+                 <label for="poll_rand" class="text-right">Random</label>
+              </div>
+              <div class="row">
+                 <input type="radio" name="col" value="rainbow" id="poll_rainbow">
+                 <label for="poll_rainbow" class="text-right">Rainbow</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <% if @tri %>
+      <div class="row">
+        <div class="small-12 column">
+          <div onclick="download('img.svg')" class="expanded button">Download (svg)</div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="small-12 medium-9 column" id="img_output">
+    <% if @tri %>
+      <% if@tri.type == 0 %>
+        <%= erb :euclPrint %>
+      <% else %>
+        <%= erb :hypPrint %>
+      <% end %>
+    <% else %>
+      Bitte Output generieren!
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function download(filename) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(document.getElementById("img_output").innerHTML));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+</script>

@@ -1,0 +1,16 @@
+.triangulationMenu {
+  background-color:rgb(200,200,200);
+}
+
+.triangulationMenu label {
+  font-weight:bold;
+}
+
+.triangulationMenu input {
+  width:4em;
+  float:left;
+}
+
+.eucl_extra input {
+  margin-top:5px;
+}
