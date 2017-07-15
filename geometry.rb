@@ -82,6 +82,12 @@ post '/triangulation' do
   erb :triangulation
 end
 
+get '/schottky' do
+  erb :schottky
+end
+
+# Helper functions
+
 def HsvToRgb(h,s,v) #nach wikipedia
   hj = (h/60.0).floor
   f = (h/60.0) - hj

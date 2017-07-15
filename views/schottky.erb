@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="small-12 medium-3 column triangulationMenu">
+    Hi
+  </div>
+  <div class="small-12 medium-9 column" id="img_output">
+    jo jo
+  </div>
+</div>
+
+<script>
+  function download(filename) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(document.getElementById("img_output").innerHTML));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+</script>
