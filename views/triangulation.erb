@@ -10,14 +10,22 @@
               <input type="number" name="w2" min="1" value="<%= @winkel[1] %>">
               <input type="number" name="w3" min="1" value="<%= @winkel[2] %>">
             </div>
+            <div class="small-12 column" style="color:red">
+              Todo: check if spherical.
+            </div>
           </div>
             
           <button type="submit" class="expanded button">GO!</button>
           
           <div class="row">
-            <div class="small-12 column">
+            <div class="small-12 medium-4 column">
               <label>Itterations</label>
               <input type="number" name="itt" min="1" value="<%= @itteration %>">
+            </div>
+            <div class="small-12 medium-8 column">
+              <div style="font-size:0.9em;color:red;">
+                For hyperbolic cases, please use 10 for now.
+              </div>
             </div>
           </div>
           
@@ -30,7 +38,7 @@
             <div class="small-12 column">
               <div class="row">
                  <input type="radio" name="col" value="bwrainbow" id="poll_bwrainbow">
-                 <label for="poll_bwrainbow" class="text-right">BW-Rose(Rainbow)</label>
+                 <label for="poll_bwrainbow" class="text-right">BW-Fill(Rainbow)</label>
               </div>
               <div class="row">
                  <input type="radio" name="col" value="rand" id="poll_rand">
@@ -40,6 +48,9 @@
                  <input type="radio" name="col" value="rainbow" id="poll_rainbow">
                  <label for="poll_rainbow" class="text-right">Rainbow</label>
               </div>
+            </div>
+            <div style="text-align:center;font-size:0.9em;">
+              Default is black lines on white background.
             </div>
           </div>
         </form>
