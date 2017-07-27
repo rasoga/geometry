@@ -19,7 +19,7 @@ class TriMaster
       @list.push(initHyp(a,b,c))
       @type = -1
     else
-      @list.push(initSphe(a,b,c))
+      #@list.push(initSphe(a,b,c)) needs implementing
       @type = 1
     end
     

@@ -1,0 +1,10 @@
+.bundle
+*~
+.png
+*.png
+*.svg
+*.rb\*
+
+/#*pry*#
+/*pry*
+*.bak

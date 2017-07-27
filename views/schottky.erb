@@ -1,9 +1,72 @@
 <div class="row">
   <div class="small-12 medium-3 column triangulationMenu">
-    Hi
+    <div class="row">
+      <div class="small-12 column">
+        <form method="POST" action="/schottky">      
+          <div class="row">    
+            <div class="small-12 column eucl_extra">
+              <div style="font-weight:bold; border-bottom:1px black solid; text-align:center;">Kind of group</div>
+              
+              <div class="row">
+                 <input type="radio" name="kind" value="schottky" id="poll_schottky" required>
+                 <label for="poll_schottky" class="text-right">Schottky</label>
+              </div>
+              <div class="row">
+                 <input type="radio" name="kind" value="closed" id="poll_closed">
+                 <label for="poll_closed" class="text-right">Closed surface</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div style="font-weight:bold;text-align:center; border-bottom:1px black solid;">
+              Generators
+            </div>
+            <div class="small-8 columns">
+              <div class="slider" data-slider data-start="2" data-end="4" data-initial-start="<%= @generators %>" data-initial-end="4">
+                <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput2"></span>
+                <span class="slider-fill" data-slider-fill style="background-color:white"></span>
+              </div>
+            </div>
+            <div class="small-4 columns">
+              <input type="number" name="gen" id="sliderOutput2">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div style="font-weight:bold;text-align:center; border-bottom:1px black solid;">
+              Itterations
+            </div>
+            <div class="small-8 columns">
+              <div class="slider" data-slider data-start="2" data-end="4" data-initial-start="<%= @itteration %>" data-initial-end="4">
+                <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput1"></span>
+                <span class="slider-fill" data-slider-fill style="background-color:white"></span>
+              </div>
+            </div>
+            <div class="small-4 columns">
+              <input type="number" name="itt" id="sliderOutput1">
+            </div>
+          </div>
+          
+          <button type="submit" class="expanded button">GO!</button>
+        </form>
+      </div>
+    </div>
+    
+    <% if @kind %>
+      <div class="row">
+        <div class="small-12 column">
+          <div onclick="download('img.svg')" class="expanded button">Download (svg)</div>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="small-12 medium-9 column" id="img_output">
-    jo jo
+    <% if @kind %>
+      <%= @theSVG %>
+    <% else %>
+      He did nothing
+    <% end %>
   </div>
 </div>
 

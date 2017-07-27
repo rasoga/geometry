@@ -2,6 +2,9 @@ require 'sinatra'
 require "matrix"
 
 require_relative 'classes/TriMaster'
+require_relative 'tim/schottky'
+require_relative 'tim/closed_surface'
+require_relative 'tim/fdplot'
 
 get '/' do
   erb :index
@@ -20,8 +23,10 @@ post '/triangulation' do
   
   @tri = TriMaster.new(@winkel[0],@winkel[1],@winkel[2])
   
-  for i in 1..@itteration do
-    @tri.reflect()
+  unless @tri.type == 1
+    for i in 1..@itteration do
+      @tri.reflect()
+    end
   end
   
  # puts "PARAMS"
@@ -79,10 +84,42 @@ post '/triangulation' do
     end
   end
   
+  if @tri.type == 1
+    
+  end
+  
   erb :triangulation
 end
 
 get '/schottky' do
+  @itteration = 2
+  @generators = 2
+
+  erb :schottky
+end
+
+post '/schottky' do
+  @itteration = params[:itt].to_i
+  @generators = params[:gen].to_i
+  
+  if params[:kind] == "schottky"
+    @kind = Schottky.generate_transformations(@generators)
+  elsif params[:kind] == "closed"
+    @kind = ClosedSurface.generate_transformations(@generators)
+  else
+    @kind = nil
+  end
+  
+  if @kind    
+    @plot = FDPlot.new(0.0,@kind,@itteration,false)
+    
+    @plot.plot.to_svg("public/blubber.svg", size: [700,700])
+    
+    theSVG = File.open("public/blubber.svg")
+    @theSVG = theSVG.read
+    theSVG.close
+  end
+  
   erb :schottky
 end
 

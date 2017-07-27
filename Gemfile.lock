@@ -1,8 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    concurrent-ruby (1.0.5)
     daemons (1.2.4)
     eventmachine (1.2.3)
+    gnuplotrb (0.3.4)
+      hamster (~> 3.0)
+    hamster (3.0.0)
+      concurrent-ruby (~> 1.0)
     rack (2.0.3)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -13,6 +18,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  gnuplotrb
   thin
 
 BUNDLED WITH
